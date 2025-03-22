@@ -4,7 +4,7 @@ import cors from "cors";
 
 import { appConfig } from "./config/appConfig.js";
 import AuthRouter from './routes/authRouter.js';
-import GeminiRouter from './routes/GeminiRouter.js';
+import GeminiRouter from './routes/geminiRouter.js';
 
 
 const app = express();
