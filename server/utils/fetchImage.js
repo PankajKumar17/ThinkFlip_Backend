@@ -8,7 +8,7 @@ export const fetchImage = async (query) => {
             return data.items[0].link;
         } else {
             console.log("No image found for:", query);
-            return "https://via.placeholder.com/300";
+            return "https://i.gifer.com/ZKZg.gif";
         }
     } catch (error) {
         console.error("Error fetching image for:", query, error);
