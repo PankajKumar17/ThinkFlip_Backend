@@ -4,6 +4,7 @@ import {aiController} from '../controllers/aiController.js';
 
 const router = express.Router();
 
-router.get("/gemini", ensureAuthenticated,aiController);
+// router.post("/", ensureAuthenticated,aiController);
+router.post("/",aiController);
 
 export default router;
