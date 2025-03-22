@@ -3,21 +3,13 @@ import mime from "mime-types";
 
 export const urlToGenerativePart = async (url) => {
   try {
-    // Make a GET request to the image URL
     const response = await axios.get(url, { responseType: "arraybuffer" });
-
-    // Determine the MIME type based on the response headers
     const mimeType = response.headers["content-type"] || mime.lookup(url);
-
     if (!mimeType || !mimeType.startsWith("image/")) {
       console.error("processImages | Unsupported image MIME type:", mimeType);
       return { Error: "Unsupported image MIME type" };
     }
-
-    // Convert the binary data to base64
     const base64Data = Buffer.from(response.data, "binary").toString("base64");
-
-    // Return an object with inlineData
     return {
       inlineData: {
         data: base64Data,

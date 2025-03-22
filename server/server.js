@@ -3,7 +3,9 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 import { appConfig } from "./config/appConfig.js";
-import { aiController } from "./controllers/aiController.js";
+import AuthRouter from './routes/authRouter.js';
+import GeminiRouter from './routes/GeminiRouter.js';
+
 
 const app = express();
 app.use(
@@ -15,11 +17,18 @@ app.use(
 );
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+import './models/db.js';
+
+
 const PORT = process.env.PORT;
 
 // Get Gemini API Response
-app.post("/gemini", aiController);
-
+app.use('/gemini', GeminiRouter);
+app.use('/auth', AuthRouter);
 
 
 app.listen(PORT, () => {
