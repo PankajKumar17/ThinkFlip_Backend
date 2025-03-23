@@ -14,7 +14,11 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    history:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"ScannedDocs"
+    }]
 });
 
 const UserModel = mongoose.model('users', UserSchema);

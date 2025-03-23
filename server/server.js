@@ -5,6 +5,7 @@ import cors from "cors";
 import { appConfig } from "./config/appConfig.js";
 import AuthRouter from './routes/authRouter.js';
 import GeminiRouter from './routes/geminiRouter.js';
+import HistoryRouter from './routes/historyRouter.js';
 
 
 const app = express();
@@ -29,6 +30,8 @@ const PORT = process.env.PORT;
 // Get Gemini API Response
 app.use('/gemini', GeminiRouter);
 app.use('/auth', AuthRouter);
+app.use('/history', HistoryRouter);
+
 
 
 app.listen(PORT, () => {
