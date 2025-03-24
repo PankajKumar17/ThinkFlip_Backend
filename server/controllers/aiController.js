@@ -28,7 +28,7 @@ export const aiController = async (req, res) => {
 
   if (modelType === "text_only") {
     const botReply = await textOnly(`${req.body.prompt.replace(/(\r\n|\n|\r)/g, " ")} \n  Summarize the given text to generate as many flashcards as possible as a JSON array. Each flashcard should have the following structure:
-      {title: "Short title of the flashcard",description: "5-sentence description of the topic"}
+      {title: "Short title of the flashcard",description: "5-sentence description of the topic",accuracy:"(number between 0 and 1 with precision of 2) of similarity of content of flashcard with the text given"}
       Ensure the output is a valid JSON array without use of /n.`);
     
     try {
@@ -44,7 +44,7 @@ export const aiController = async (req, res) => {
     }
 
   } else if (modelType === "text_and_image") {
-    const botReply = await textAndImage("Summarize the given image to generate as many flashcards as possible as a JSON array. Each flashcard should have the following structure:{title:Short title of the flashcard,description: 5-sentence description of the topic}Ensure the output is a valid JSON array without use of /n ", req.body.imageParts);
+    const botReply = await textAndImage("Summarize the given image to generate as many flashcards as possible as a JSON array. Each flashcard should have the following structure:{title:Short title of the flashcard,description: 5-sentence description of the topic,accuracy:percentage with precision of similarity of content of flashcard with the text given}Ensure the output is a valid JSON array without use of /n ", req.body.imageParts);
 
     try {
       let flashcards = preprocess(botReply.result);
