@@ -6,7 +6,7 @@ import { appConfig } from "./config/appConfig.js";
 import AuthRouter from './routes/authRouter.js';
 import GeminiRouter from './routes/geminiRouter.js';
 import HistoryRouter from './routes/historyRouter.js';
-import AccuracyRouter from './routes/nlpRoutes.js';
+import SimilarityRouter from './routes/similarityRoutes.js';
 
 
 const app = express();
@@ -28,11 +28,10 @@ import './models/db.js';
 
 const PORT = process.env.PORT;
 
-// Get Gemini API Response
 app.use('/gemini', GeminiRouter);
 app.use('/auth', AuthRouter);
 app.use('/history', HistoryRouter);
-app.use('/accuracy', AccuracyRouter);
+app.use('/accuracy', SimilarityRouter);
 
 
 
