@@ -28,6 +28,10 @@ import './models/db.js';
 
 const PORT = process.env.PORT;
 
+app.get('/',(req,res)=>{
+  res.send("ThinkFlip Backend");
+})
+
 app.use('/gemini', GeminiRouter);
 app.use('/auth', AuthRouter);
 app.use('/history', HistoryRouter);
