@@ -1,8 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-
-import { appConfig } from "./config/appConfig.js";
 import AuthRouter from './routes/authRouter.js';
 import GeminiRouter from './routes/geminiRouter.js';
 import HistoryRouter from './routes/historyRouter.js';
@@ -12,11 +10,13 @@ import SimilarityRouter from './routes/similarityRoutes.js';
 const app = express();
 app.use(
   cors({
-    origin: appConfig.corsConfig.origin,
-    methods: appConfig.corsConfig.methods,
-    allowedHeaders: ["Content-Type", "application/json"],
+    origin: "*",
+    methods: ["GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
