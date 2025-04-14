@@ -51,7 +51,7 @@ export const aiController = async (req, res) => {
 
   if (modelType === "text_only") {
     const botReply = await textOnly(`${originalText.replace(/(\r\n|\n|\r)/g, " ")} \n  Summarize the given text to generate ${number!=null ? number : 'as many as possible'} flashcards based strictly on its content as a JSON array. Each flashcard should have the following structure:
-      {title: "Short title of the flashcard",description: "5-sentence description of the topic"}.Avoid incorporating any information beyond what is present in the text given.Ensure the output is a valid JSON array without use of /n.`);
+      {title: "Short title of the flashcard",description: "5-sentence description of the topic"}.Ensure the output is a valid JSON array without use of /n.`);
     
     try {
       let flashcards = preprocess(botReply.result);
@@ -66,7 +66,7 @@ export const aiController = async (req, res) => {
     }
 
   } else if (modelType === "text_and_image") {
-    const botReply = await textAndImage(`Summarize the given image to generate ${number!=null ? number:'as many as possible'} flashcards based strictly on its content as a JSON array. Each flashcard should have the following structure:{title:Short title of the flashcard,description: 5-sentence description of the topic}.Ensure the JSON output is properly formatted, valid, and does not include newline characters (\n). Avoid incorporating any information beyond what is present in the image.`, req.body.imageParts);
+    const botReply = await textAndImage(`Summarize the given image to generate ${number!=null ? number:'as many as possible'} flashcards based strictly on its content as a JSON array. Each flashcard should have the following structure:{title:Short title of the flashcard,description: 5-sentence description of the topic}.Ensure the JSON output is properly formatted, valid, and does not include newline characters (\n).`, req.body.imageParts);
 
     try {
       let flashcards = preprocess(botReply.result);

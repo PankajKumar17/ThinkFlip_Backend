@@ -21,7 +21,7 @@ export const mcqController = async (req, res) => {
 
   if (modelType === "text_only") {
     const botReply = await textOnly(`${req.body.prompt.replace(/(\r\n|\n|\r)/g, " ")} \n  From the given text to generate ${number!=null ? number : 'as many as possible'} MCQ as a JSON array. Each MCQ should have the following structure:
-      {question: "question",options:[option1,option2,option3,option4],correctOption:"option",explanation:"explanation of the question"}.Ensure that no external details other than included in the text are used. Ensure the output is a valid JSON array without use of /n.`);
+      {question: "question",options:[option1,option2,option3,option4],correctOption:"option",explanation:"explanation of the question"}. Ensure the output is a valid JSON array without use of /n.`);
     try {
       let mcqs = preprocess(botReply.result);
       if (!mcqs) throw new Error("Failed to parse mcq");
@@ -31,7 +31,7 @@ export const mcqController = async (req, res) => {
     }
 
   } else if (modelType === "text_and_image") {
-    const botReply = await textAndImage(`From the given image to generate ${number!=null ? number :'as many as possible'}MCQ as a JSON array. Each MCQ should have the following structure:{question: "question",options:[option1,option2,option3,option4],correctOption:"option",explanation:"explanation of the question"}.Ensure that no external details other than included in the text are used.Ensure the output is a valid JSON array without use of /n.`, req.body.imageParts);
+    const botReply = await textAndImage(`From the given image to generate ${number!=null ? number :'as many as possible'}MCQ as a JSON array. Each MCQ should have the following structure:{question: "question",options:[option1,option2,option3,option4],correctOption:"option",explanation:"explanation of the question"}.Ensure the output is a valid JSON array without use of /n.`, req.body.imageParts);
 
     try {
       let mcqs = preprocess(botReply.result);
