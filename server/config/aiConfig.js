@@ -4,8 +4,8 @@ import { HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
 export const aiConfig = {
   // These Gemini models are updated upto September 2021
   gemini: {
-    textOnlyModel: "gemini-1.5-flash",
-    textAndImageModel: "gemini-1.5-flash",
+    textOnlyModel: "gemini-2.0-flash",
+    textAndImageModel: "gemini-2.0-flash",
     apiKey: process.env.GEMINI_API_KEY,
 
     // Gemini Safety Settings
